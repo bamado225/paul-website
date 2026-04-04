@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+    <title>Laugh Lyons | Where Laughter Meets Inspiration</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect"/>
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+    <link href="https://fonts.googleapis.com/css2?family=Epilogue:ital,wght@0,100..900;1,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "surface-container": "#edeee8",
+                        "background": "#fafaf5",
+                        "on-tertiary": "#fff7f7",
+                        "tertiary-fixed-dim": "#ff85a4",
+                        "tertiary-fixed": "#ff9cb2",
+                        "on-primary-container": "#113d70",
+                        "secondary": "#705e00",
+                        "on-background": "#30332e",
+                        "on-tertiary-fixed-variant": "#820038",
+                        "outline-variant": "#b0b3ac",
+                        "primary": "#3b6095",
+                        "surface-container-low": "#f3f4ee",
+                        "surface-container-highest": "#e0e4dc",
+                        "outline": "#787c75",
+                        "tertiary-dim": "#a6004a",
+                        "error": "#ac3434",
+                        "on-secondary-fixed-variant": "#6c5a00",
+                        "inverse-on-surface": "#9c9d99",
+                        "on-tertiary-container": "#720030",
+                        "surface-bright": "#fafaf5",
+                        "on-tertiary-fixed": "#48001c",
+                        "primary-container": "#9fc2fe",
+                        "on-primary": "#f8f8ff",
+                        "primary-fixed": "#9fc2fe",
+                        "error-dim": "#70030f",
+                        "on-error-container": "#65000b",
+                        "surface-variant": "#e0e4dc",
+                        "tertiary-container": "#ff9cb2",
+                        "on-primary-fixed": "#002851",
+                        "surface": "#fafaf5",
+                        "secondary-fixed-dim": "#f9d200",
+                        "inverse-primary": "#9fc2fe",
+                        "primary-dim": "#2e5488",
+                        "secondary-fixed": "#ffe16d",
+                        "surface-dim": "#d7dbd3",
+                        "surface-tint": "#3b6095",
+                        "error-container": "#f56965",
+                        "secondary-container": "#ffe16d",
+                        "on-primary-fixed-variant": "#1d4679",
+                        "inverse-surface": "#0d0f0c",
+                        "on-secondary": "#fff8ec",
+                        "on-error": "#fff7f6",
+                        "on-surface-variant": "#5c605a",
+                        "on-secondary-fixed": "#4c3e00",
+                        "tertiary": "#bd0055",
+                        "on-secondary-container": "#615100",
+                        "primary-fixed-dim": "#91b5ef",
+                        "surface-container-lowest": "#ffffff",
+                        "surface-container-high": "#e7e9e2",
+                        "on-surface": "#30332e",
+                        "secondary-dim": "#635200"
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.25rem",
+                        lg: "0.5rem",
+                        xl: "1.5rem",
+                        full: "9999px"
+                    },
+                    fontFamily: {
+                        headline: ["Epilogue", "sans-serif"],
+                        body: ["Inter", "sans-serif"],
+                        label: ["Inter", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        .premium-gradient {
+            background: linear-gradient(135deg, #3b6095 0%, #5a82b4 100%);
+        }
+        .glass-nav {
+            background: rgba(250, 250, 245, 0.8);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+        }
+        .wonky-underline {
+            background-image: url("data:image/svg+xml,%3Csvg width='200' height='20' viewBox='0 0 200 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2 15C40 5 160 5 198 15' stroke='%23bd0055' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-position: bottom;
+            background-repeat: no-repeat;
+            background-size: 100% 10px;
+            padding-bottom: 8px;
+        }
+        .sketch-border {
+            border: 3px solid #30332e;
+            border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
+        }
+        .punchy-btn {
+            background-color: #bd0055;
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 1.5rem;
+            font-size: 1.125rem;
+            font-weight: 900;
+            box-shadow: 5px 5px 0px 0px rgba(59,96,149,1);
+            transition: all 0.2s;
+        }
+        .punchy-btn:hover {
+            box-shadow: 3px 3px 0px 0px rgba(59,96,149,1);
+            transform: translate(2px, 2px);
+        }
+        .floating-card {
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .floating-card:hover {
+            transform: scale(1.02) rotate(0deg) !important;
+            z-index: 50;
+        }
+        .scribble-line {
+            position: absolute;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.15;
+        }
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #fafaf5; }
+        ::-webkit-scrollbar-thumb { background: #bd0055; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #3b6095; }
+        /* Quote fade */
+        .quote-fade {
+            transition: opacity 0.4s ease;
+        }
+        /* Thought bubble */
+        .thought-bubble-content {
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .thought-bubble-content.active {
+            transform: scale(1);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
+
+    <!-- ===================== 1. NAVIGATION ===================== -->
+    <nav class="fixed top-0 w-full z-50 glass-nav shadow-sm">
+        <div class="flex justify-between items-center w-full px-6 py-4 max-w-7xl mx-auto">
+            <div class="text-2xl font-black italic tracking-tighter text-primary font-headline">
+                Laugh Lyons
+            </div>
+            <div class="hidden md:flex items-center gap-8">
+                <a class="text-tertiary border-b-2 border-tertiary pb-1 font-headline tracking-tight font-bold text-sm" href="https://paullyons250013.substack.com/" target="_blank">The Archive</a>
+                <a class="text-primary/70 hover:text-tertiary transition-colors font-headline tracking-tight font-bold text-sm" href="#about">Who is Paul?</a>
+                <a class="text-primary/70 hover:text-tertiary transition-colors font-headline tracking-tight font-bold text-sm" href="#book">The Book</a>
+                <a class="text-primary/70 hover:text-tertiary transition-colors font-headline tracking-tight font-bold text-sm" href="#hire">Hire Paul</a>
+                <a class="text-primary/70 hover:text-tertiary transition-colors font-headline tracking-tight font-bold text-sm" href="#appearances">Appearances</a>
+            </div>
+            <div class="flex items-center gap-3">
+                <button class="premium-gradient text-white px-6 py-2.5 rounded-xl font-bold text-sm hover:scale-[1.03] active:scale-95 transition-all duration-200 hidden md:block">
+                    Book Paul Now
+                </button>
+                <button id="mobile-menu-btn" class="md:hidden w-10 h-10 flex items-center justify-center rounded-lg text-primary">
+                    <span class="material-symbols-outlined text-2xl">menu</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden px-6 pb-6 space-y-4">
+            <a class="block text-tertiary font-headline font-bold text-sm" href="https://paullyons250013.substack.com/" target="_blank">The Archive</a>
+            <a class="block text-primary/70 font-headline font-bold text-sm" href="#about">Who is Paul?</a>
+            <a class="block text-primary/70 font-headline font-bold text-sm" href="#book">The Book</a>
+            <a class="block text-primary/70 font-headline font-bold text-sm" href="#hire">Hire Paul</a>
+            <a class="block text-primary/70 font-headline font-bold text-sm" href="#appearances">Appearances</a>
+            <button class="premium-gradient text-white px-6 py-2.5 rounded-xl font-bold text-sm w-full">Book Paul Now</button>
+        </div>
+    </nav>
+
+    <main class="pt-24">
+
+        <!-- ===================== 2. HERO ===================== -->
+        <section class="relative max-w-7xl mx-auto px-6 py-12 md:py-24 grid md:grid-cols-12 gap-12 items-center overflow-hidden">
+            <!-- Subtle SVG scribbles -->
+            <svg class="scribble-line top-20 left-[5%] w-64 h-64" viewBox="0 0 200 200">
+                <path d="M10,100 C50,20 150,20 190,100 S50,180 10,100" fill="none" stroke="#bd0055" stroke-dasharray="5,5" stroke-width="2"></path>
+            </svg>
+            <svg class="scribble-line bottom-10 right-[3%] w-72 h-72" viewBox="0 0 200 200">
+                <path d="M190,10 C150,150 50,50 10,190" fill="none" stroke="#3b6095" stroke-linecap="round" stroke-width="3"></path>
+                <path d="M20,170 L10,190 L35,185" fill="none" stroke="#3b6095" stroke-width="3"></path>
+            </svg>
+
+            <div class="md:col-span-7 z-10">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-secondary-container text-on-secondary-container text-sm font-bold tracking-widest uppercase mb-6 font-label">
+                    Warning: Professional Optimism Ahead
+                </span>
+                <h1 class="font-headline text-6xl md:text-8xl font-black text-primary tracking-tight leading-[0.9] mb-8">
+                    Seize the Day. <br/>
+                    <span class="text-tertiary italic wonky-underline">Maybe Tomorrow.</span>
+                </h1>
+                <p class="text-xl text-on-surface-variant max-w-lg mb-10 leading-relaxed">
+                    Comedian. Speaker. Author. Chronic optimist who once spent thirty years failing upward and somehow turned it into a career. He's not a self-help guru &mdash; he's the guy at the back of the seminar asking inconvenient questions.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="#hire" class="premium-gradient text-white px-8 py-4 rounded-xl font-bold flex items-center gap-2 group transition-all hover:scale-[1.02]">
+                        Experience the Wit
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                    </a>
+                    <a href="https://paullyons250013.substack.com/" target="_blank" class="px-8 py-4 rounded-xl font-bold text-primary border-2 border-primary/20 hover:border-primary transition-colors">
+                        Read the Stories
+                    </a>
+                </div>
+            </div>
+            <div class="md:col-span-5 relative">
+                <div class="absolute -top-10 -left-10 w-32 h-32 bg-primary-fixed rounded-full -z-10 blur-3xl opacity-50"></div>
+                <div class="relative overflow-hidden rounded-xl aspect-[4/5] shadow-2xl transform rotate-2 hover:rotate-0 transition-transform duration-500">
+                    <img alt="Paul Lyons Portrait" class="w-full h-full object-cover object-top" src="paul.jpg"/>
+                </div>
+                <!-- Floating quote widget -->
+                <div class="absolute -bottom-8 -left-6 md:-left-16 bg-surface-container-highest p-6 rounded-xl shadow-xl max-w-[260px] rotate-[-3deg] hover:rotate-0 transition-transform cursor-default sketch-border hidden md:block floating-card z-20">
+                    <span class="material-symbols-outlined text-tertiary text-4xl block mb-2">format_quote</span>
+                    <p class="font-bold text-primary italic leading-tight font-headline text-sm">"Ninety percent of what we worry about never even happens, which makes me worry."</p>
+                    <p class="text-xs mt-3 text-on-surface-variant font-medium font-label">-- Paul Lyons</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 3. ABOUT / STATS ===================== -->
+        <section id="about" class="bg-surface-container-low py-24 mt-12">
+            <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-20 items-center">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="space-y-4">
+                        <img class="rounded-lg w-full h-64 object-cover grayscale hover:grayscale-0 transition-all duration-500" alt="Stage microphone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoulCO-Fhy9qF0NDFh6etKCBMxK7kgibyUli3WiuZ40davvMx5JuUrHS2PvbI8-VdZfs6lxrxpLV2WyC8VYc_svRzcl6r1eoVackROilyeZB1Lg9yjxKGj6vPzXeq5T98ORdYtVW4rLIq3KrpMFgYvxOvDAEYzNtnYE_3cCfWqucv4cKC7b7rBwM6BT-RwS5owulDZaWsz2Ip86uHdQaXRz9E_tvTLtPT76-0fjoCRKSwagt_lUNIjat0KFlKnLAhmfkP82NKpvyo"/>
+                        <div class="bg-primary p-8 rounded-lg text-white">
+                            <h3 class="text-4xl font-black font-headline">500+</h3>
+                            <p class="text-sm opacity-80 uppercase tracking-widest mt-2 font-label">Stages Graced</p>
+                        </div>
+                    </div>
+                    <div class="space-y-4 pt-12">
+                        <div class="bg-surface-container-highest p-8 rounded-lg">
+                            <span class="material-symbols-outlined text-primary text-4xl">auto_awesome</span>
+                            <p class="mt-4 font-bold text-on-surface">Comic Clarity</p>
+                        </div>
+                        <img class="rounded-lg w-full h-80 object-cover" alt="Theater audience" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIjDrqaMmG5dhjRb96I5EFrl3ayDR0cGrY-XA4wpDLjEixTu4Mdtw1S3hYY4mMyo1asgf8juSzdhs3nxNfedmUtY8Ggy4wht52E5MpS5F3_VlWjXQn_q_vPeeh0y1qBnUiYZYF4MhmCUppnDC2fj8JooY25XtzKalzIEOpyVrnxC28zeFUUnrYcRRktaSw3j_xD2aLu0GL8AWOIYMYGQR8LwCGmix6hh_As6RVywzGn2CB5IYDWiVHgoTLNBmaB46ktOg-a6vQ0yM"/>
+                    </div>
+                </div>
+                <div>
+                    <span class="uppercase tracking-[0.2em] text-primary font-bold text-sm mb-4 block font-label">The Man Behind The Mic</span>
+                    <h2 class="font-headline text-5xl font-extrabold text-on-background mb-8">Comedian by Trade, <br/><span class="wonky-underline">Inspiration</span> by Choice.</h2>
+                    <div class="space-y-6 text-on-surface-variant leading-relaxed">
+                        <p>Paul Lyons grew up in a house where laughter wasn't a luxury &mdash; it was the primary coping mechanism. His father, "Pop," taught him that life is mostly suffering interrupted by sandwiches, and that the suffering is funnier in retrospect.</p>
+                        <p>He spent decades performing stand-up, navigating cruise ships, corporate boardrooms, and a pandemic, armed with nothing but a microphone and an unreasonable amount of optimism. His philosophy: Carpe Diem, Ma&ntilde;ana. Seize the day. Just maybe not today.</p>
+                    </div>
+                    <div class="mt-10 flex gap-12">
+                        <div>
+                            <span class="block text-2xl font-bold text-on-surface font-headline">30+</span>
+                            <span class="text-sm text-on-surface-variant uppercase tracking-tighter font-label">Years of Wit</span>
+                        </div>
+                        <div class="border-l border-outline-variant pl-12">
+                            <span class="block text-2xl font-bold text-on-surface font-headline">4</span>
+                            <span class="text-sm text-on-surface-variant uppercase tracking-tighter font-label">TV Specials</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 4. FEATURED BOOK ===================== -->
+        <section id="book" class="py-32 max-w-7xl mx-auto px-6">
+            <div class="bg-surface-container-lowest rounded-xl p-4 md:p-12 shadow-sm">
+                <div class="grid md:grid-cols-12 gap-12 items-stretch">
+                    <div class="md:col-span-4 flex flex-col justify-center items-center bg-surface-container rounded-lg p-12">
+                        <div class="relative group">
+                            <div class="absolute inset-0 bg-primary/20 blur-2xl group-hover:bg-primary/30 transition-all"></div>
+                            <img class="relative w-full max-w-[280px] rounded-lg shadow-[20px_20px_60px_rgba(0,0,0,0.2)] transform -rotate-3 group-hover:rotate-0 transition-all duration-500" alt="Carpe Diem Mañana book cover" src="book-cover.jpg"/>
+                        </div>
+                    </div>
+                    <div class="md:col-span-8 flex flex-col justify-center py-8">
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="flex">
+                                <span class="material-symbols-outlined text-amber-400" style="font-variation-settings: 'FILL' 1">star</span>
+                                <span class="material-symbols-outlined text-amber-400" style="font-variation-settings: 'FILL' 1">star</span>
+                                <span class="material-symbols-outlined text-amber-400" style="font-variation-settings: 'FILL' 1">star</span>
+                                <span class="material-symbols-outlined text-amber-400" style="font-variation-settings: 'FILL' 1">star</span>
+                                <span class="material-symbols-outlined text-amber-400" style="font-variation-settings: 'FILL' 1">star</span>
+                            </div>
+                            <span class="text-sm font-bold text-on-surface-variant font-label">Best Seller</span>
+                        </div>
+                        <h2 class="font-headline text-5xl font-black mb-6 text-on-surface">Carpe Diem, Ma&ntilde;ana.</h2>
+                        <p class="text-xl text-on-surface-variant mb-8 leading-relaxed max-w-2xl">
+                            This book is about Paul's daily struggle to live effortlessly. A collection of stories from four decades of family life, comedy clubs, spiritual confusion, and the stubborn belief that things will probably work out &mdash; just maybe not today. Funny, honest, and just philosophical enough to feel earned.
+                        </p>
+                        <div class="grid grid-cols-2 gap-4 mb-10 max-w-md">
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-2 rounded-full">check</span>
+                                <span class="font-medium">Family Life (Barely Survived)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-2 rounded-full">check</span>
+                                <span class="font-medium">Comedy Life (Mostly Survived)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-2 rounded-full">check</span>
+                                <span class="font-medium">Spiritual Life (Jury's Still Out)</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="material-symbols-outlined text-primary bg-primary-fixed/30 p-2 rounded-full">check</span>
+                                <span class="font-medium">Personal Life (Define "Personal")</span>
+                            </div>
+                        </div>
+                        <div>
+                            <a href="https://a.co/d/0aLNj2bA" target="_blank" class="inline-block premium-gradient text-white px-10 py-4 rounded-xl font-bold text-lg hover:scale-[1.03] active:scale-95 transition-all shadow-xl shadow-primary/20">
+                                Get Your Copy on Amazon
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 5. STORIES ARCHIVE (BENTO GRID) ===================== -->
+        <section id="archive" class="py-32 bg-surface">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 gap-6">
+                    <div>
+                        <span class="uppercase tracking-[0.2em] text-primary font-bold text-sm mb-4 block font-label">The Lyons Den</span>
+                        <h2 class="text-4xl md:text-5xl font-black text-primary tracking-tight font-headline wonky-underline inline-block">
+                            The Archive of Unusual Ideas
+                        </h2>
+                        <p class="text-lg text-on-surface-variant mt-4 font-medium">Musings from a mind that refuses to sit still.</p>
+                    </div>
+                    <a class="group flex items-center gap-2 text-tertiary font-bold text-lg shrink-0" href="https://paullyons250013.substack.com/" target="_blank">
+                        Read All Stories
+                        <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-12 gap-8">
+                    <!-- Large Featured Card -->
+                    <div class="md:col-span-8 bg-surface-container-low rounded-xl overflow-hidden flex flex-col md:flex-row hover:scale-[1.01] transition-transform duration-300">
+                        <div class="md:w-1/2 p-10 flex flex-col justify-between">
+                            <div>
+                                <span class="text-xs font-black uppercase tracking-[0.2em] text-white bg-tertiary px-3 py-1 rounded-full font-label">From the Book</span>
+                                <h3 class="text-3xl font-black text-primary mt-6 leading-tight font-headline">Pop.</h3>
+                                <p class="mt-4 text-on-surface-variant leading-relaxed">His father was a complicated man who communicated mostly through sighs and sandwiches. Paul spent decades trying to figure him out and finally did &mdash; about ten minutes too late.</p>
+                            </div>
+                            <a href="https://paullyons250013.substack.com/" target="_blank" class="mt-8 flex items-center gap-3 text-primary font-black uppercase text-sm group font-label">
+                                Read the Story
+                                <span class="w-8 h-px bg-primary group-hover:w-12 transition-all"></span>
+                            </a>
+                        </div>
+                        <div class="md:w-1/2 min-h-[300px]">
+                            <img class="w-full h-full object-cover" alt="Stage microphone" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoulCO-Fhy9qF0NDFh6etKCBMxK7kgibyUli3WiuZ40davvMx5JuUrHS2PvbI8-VdZfs6lxrxpLV2WyC8VYc_svRzcl6r1eoVackROilyeZB1Lg9yjxKGj6vPzXeq5T98ORdYtVW4rLIq3KrpMFgYvxOvDAEYzNtnYE_3cCfWqucv4cKC7b7rBwM6BT-RwS5owulDZaWsz2Ip86uHdQaXRz9E_tvTLtPT76-0fjoCRKSwagt_lUNIjat0KFlKnLAhmfkP82NKpvyo"/>
+                        </div>
+                    </div>
+                    <!-- Yellow Side Card -->
+                    <div class="md:col-span-4 bg-secondary-container p-8 rounded-xl flex flex-col justify-between hover:scale-[1.01] transition-transform">
+                        <div>
+                            <span class="material-symbols-outlined text-4xl text-on-secondary-container">bakery_dining</span>
+                            <h3 class="text-2xl font-black text-on-secondary-container mt-6 font-headline">Carpe Donut.</h3>
+                            <p class="mt-2 text-on-secondary-container/80">A quitter never wins and a winner never quits &mdash; eating donuts. Paul's definitive treatise on seizing opportunities, particularly the glazed ones.</p>
+                        </div>
+                        <div class="mt-8 pt-6 border-t border-on-secondary-container/10 flex justify-between items-center">
+                            <a href="https://paullyons250013.substack.com/" target="_blank" class="text-sm font-bold font-label hover:underline">Read on Substack</a>
+                            <span class="material-symbols-outlined">north_east</span>
+                        </div>
+                    </div>
+                    <!-- Appearances Card -->
+                    <div id="appearances" class="md:col-span-4 bg-surface-container-highest p-8 rounded-xl hover:scale-[1.01] transition-transform">
+                        <h3 class="text-2xl font-black text-primary font-headline">More from the Archive.</h3>
+                        <ul class="mt-6 space-y-4">
+                            <li class="flex gap-4">
+                                <span class="font-black text-tertiary font-headline">01</span>
+                                <div>
+                                    <p class="font-bold text-primary">2 Legit 2 Quit</p>
+                                    <p class="text-xs text-on-surface-variant font-label">On the stubbornness that passes for resilience</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-black text-tertiary font-headline">02</span>
+                                <div>
+                                    <p class="font-bold text-primary">Recovering from Purim</p>
+                                    <p class="text-xs text-on-surface-variant font-label">The holiday that keeps on giving (and giving)</p>
+                                </div>
+                            </li>
+                            <li class="flex gap-4">
+                                <span class="font-black text-tertiary font-headline">03</span>
+                                <div>
+                                    <p class="font-bold text-primary">The Paranoid Optimist</p>
+                                    <p class="text-xs text-on-surface-variant font-label">Expecting the best, bracing for the worst</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Overlay Image Card -->
+                    <div class="md:col-span-8 relative rounded-xl overflow-hidden group min-h-[400px] flex items-center">
+                        <img class="absolute inset-0 w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" alt="Comedy stage" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCRJA7dY-jul1VLEQJLo9OjJpeoGQEPibG68ZZARttN8kTj-gi7095TdMe2bC_eMczERHg4LAwi1_Fd6js9x9xEkm8uY5cRW6ZZLzbAMPWNN4plsfYWY9kharAN0xQO9-NAGLsN9ZwK9073ybTuVqGbb4_OcEG9d3a_gPGvCDQzHoWhzxVUsD5Gpv88_WiQiGFMe_e7ahTG6UQ7wqfDK12iFOvWyeYRRSgiWDqU-fSZdjvDSeLEbblpyOEDrJ1EYaonCrdtQeN3pzo"/>
+                        <div class="absolute inset-0 bg-primary/60 backdrop-blur-[2px]"></div>
+                        <div class="relative p-12 max-w-xl">
+                            <h3 class="text-4xl font-black text-white font-headline">Family Vacation: An Oxymoron.</h3>
+                            <p class="text-white/80 mt-4 text-lg">The whole family in a minivan. Five hundred miles. No air conditioning. Plenty of material.</p>
+                            <a href="https://paullyons250013.substack.com/" target="_blank" class="mt-8 inline-block bg-secondary-container text-on-secondary-container px-6 py-3 rounded-xl font-bold hover:scale-105 transition-transform">
+                                Read the Dispatch
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 6. SERVICES / HIRE PAUL ===================== -->
+        <section id="hire" class="py-24 bg-surface-container-low">
+            <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div class="order-2 lg:order-1 relative">
+                    <div class="grid grid-cols-2 gap-4">
+                        <img class="rounded-xl mt-12 shadow-lg w-full h-auto object-cover" alt="Typewriter" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjyoeoPDRCImDevUOTiKWy4e96nqEgbuFVncAmsrkes9c7SF0MGBYnWxZGjJLq2Q_uKjKTII-FW6G0fwgkj-rGyh9i4_dwgW-7tMNnn6f2e0EdNg1yGeBXQuxMHgC7O6BvHNmaPJ8fyGmO4IdeiFPF1VD9d2RrOmg3hh8cOviSDv0sDfm_4fhjPEFzDkQfn-f-M5THmT5MC6bUvL06XPuA8DTwHoMnpkXKK6YV9zyv5FzEjNOeBGyF2W9fD1gehB1Wv4OO9Gn2Fb8"/>
+                        <img class="rounded-xl shadow-lg -mt-12 w-full h-auto object-cover" alt="Notebooks" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCDmYSiGtVy0b6LJwllzB1dK4xYTthUXjpy5JVc5wkWAFq14IyaHpNP4tgYsojyHUwx2aOY9P15F0JrxYRAG-CrCKf5xnwmAS52KajSZCzPkwWhFS0-0BURojLPhvmI02O8fjJDok-3zwrLdohbdYGcPy7G97SBnby334D_zF1CMzNGKXN9vcNOfV2jfOv5i-t6f1MKGOjvTwZUow8fqDQ8yl-aTNW4GpFKe62QCuSK93GTYhZ4VCQRfz5BWogGf5RQmUAnkcJFvus"/>
+                    </div>
+                    <!-- Interactive Badge -->
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 bg-tertiary rounded-full flex flex-col items-center justify-center text-white shadow-2xl rotate-12 hover:rotate-0 transition-transform cursor-pointer floating-card z-10">
+                        <span class="material-symbols-outlined text-3xl">event_upcoming</span>
+                        <span class="text-xs font-black uppercase tracking-widest mt-1 font-label">Book Now</span>
+                        <span class="text-[9px] text-center mt-1 px-4 leading-none opacity-80">Limited spots</span>
+                    </div>
+                </div>
+                <div class="order-1 lg:order-2 space-y-8">
+                    <span class="uppercase tracking-[0.2em] text-primary font-bold text-sm block font-label">Work With Paul</span>
+                    <h2 class="text-5xl md:text-6xl font-black text-primary leading-tight font-headline">Bring the Fun to Your <span class="italic text-tertiary">Corporate Grind.</span></h2>
+                    <p class="text-xl text-on-surface-variant leading-relaxed">
+                        Tired of seminars that feel like a root canal without the anesthesia? Paul has performed on over 500 stages &mdash; comedy clubs, cruise ships, boardrooms &mdash; and he's never once bored anyone into a coma. That's the guarantee. The laughing is free.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-tertiary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">auto_fix_high</span>
+                            </div>
+                            <span class="font-bold text-lg">Keynote "Disruptions"</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-tertiary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">theater_comedy</span>
+                            </div>
+                            <span class="font-bold text-lg">Custom Satire Sets</span>
+                        </div>
+                        <div class="flex items-center gap-4 group">
+                            <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:bg-tertiary group-hover:text-white transition-colors">
+                                <span class="material-symbols-outlined">group_work</span>
+                            </div>
+                            <span class="font-bold text-lg">The "Optimist" Workshop</span>
+                        </div>
+                    </div>
+                    <div class="pt-4">
+                        <button class="punchy-btn font-headline w-full md:w-auto">
+                            Publish the Thesis (Hire Paul)
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 7. RANDOM ENLIGHTENMENT GENERATOR ===================== -->
+        <section class="py-24 px-6">
+            <div class="max-w-4xl mx-auto bg-surface-container-lowest p-12 md:p-20 relative sketch-border shadow-2xl">
+                <div class="absolute -top-6 left-1/2 -translate-x-1/2 px-8 py-2 bg-primary text-white font-bold text-sm uppercase tracking-widest rounded-full font-label whitespace-nowrap">
+                    Random Enlightenment Generator
+                </div>
+                <!-- Decorative corner accents -->
+                <div class="absolute -top-4 -right-4 w-20 h-8 bg-tertiary/15 rotate-45"></div>
+                <div class="absolute -bottom-4 -left-4 w-20 h-8 bg-tertiary/15 rotate-45"></div>
+
+                <div class="text-center space-y-12 pt-4">
+                    <div class="min-h-[120px] flex items-center justify-center">
+                        <p id="wisdom-quote" class="text-3xl md:text-4xl font-headline font-black text-primary italic leading-tight quote-fade">
+                            "I used to be an overachiever, but then I realized the trophy was just plastic. Now I'm a professional under-stressor."
+                        </p>
+                    </div>
+                    <button id="wisdom-btn" class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-lg font-headline">
+                        Generate More Wisdom
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 8. GRADIENT CTA ===================== -->
+        <section class="max-w-7xl mx-auto px-6 mb-32">
+            <div class="premium-gradient rounded-xl p-12 md:p-24 text-center text-white relative overflow-hidden">
+                <div class="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+                <div class="absolute bottom-0 left-0 w-64 h-64 bg-black/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl"></div>
+                <div class="relative z-10 max-w-2xl mx-auto">
+                    <h2 class="font-headline text-5xl md:text-6xl font-black mb-8">Ready for some serious fun?</h2>
+                    <p class="text-xl mb-12 opacity-90">Book Paul for your next event, workshop, or existential crisis. He shows up on time, brings his own material, and leaves the audience in better shape than he found them.</p>
+                    <div class="flex flex-wrap justify-center gap-6">
+                        <button class="bg-white text-primary px-10 py-4 rounded-xl font-black text-lg hover:scale-105 active:scale-95 transition-all shadow-xl">
+                            Inquire Now
+                        </button>
+                        <a href="https://paullyons250013.substack.com/" target="_blank" class="bg-transparent border-2 border-white/30 text-white px-10 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                            Read the Stories
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ===================== 9. FOOTER ===================== -->
+    <footer class="bg-surface-container-low w-full rounded-t-[2rem]">
+        <div class="flex flex-col md:flex-row justify-between items-center px-10 py-12 w-full max-w-7xl mx-auto gap-12">
+            <div class="space-y-4 text-center md:text-left">
+                <div class="text-lg font-bold text-primary font-headline">Laugh Lyons</div>
+                <p class="text-sm tracking-wide text-primary/50 max-w-xs font-label">
+                    &copy; 2024 Laugh Lyons. Sophisticatedly Silly. Established in the pursuit of intellectual whimsy.
+                </p>
+            </div>
+            <div class="flex flex-wrap justify-center gap-x-8 gap-y-4">
+                <a class="text-primary/60 hover:text-tertiary hover:underline decoration-secondary-container decoration-2 underline-offset-4 text-sm tracking-wide transition-all duration-300 font-label" href="#">Contact</a>
+                <a class="text-primary/60 hover:text-tertiary hover:underline decoration-secondary-container decoration-2 underline-offset-4 text-sm tracking-wide transition-all duration-300 font-label" href="https://paullyons250013.substack.com/" target="_blank">Newsletter</a>
+                <a class="text-primary/60 hover:text-tertiary hover:underline decoration-secondary-container decoration-2 underline-offset-4 text-sm tracking-wide transition-all duration-300 font-label" href="#">Press Kit</a>
+                <a class="text-primary/60 hover:text-tertiary hover:underline decoration-secondary-container decoration-2 underline-offset-4 text-sm tracking-wide transition-all duration-300 font-label" href="#">Privacy Policy</a>
+                <a class="text-primary/60 hover:text-tertiary hover:underline decoration-secondary-container decoration-2 underline-offset-4 text-sm tracking-wide transition-all duration-300 font-label" href="#">Terms of Use</a>
+            </div>
+            <div class="flex gap-4">
+                <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-tertiary hover:text-white transition-all" href="https://www.facebook.com/comedyDynasty/" target="_blank" aria-label="Facebook">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-tertiary hover:text-white transition-all" href="https://www.instagram.com/paullyonscomic/" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-tertiary hover:text-white transition-all" href="https://www.youtube.com/@Pawlyons" target="_blank" aria-label="YouTube">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+                <a class="w-10 h-10 rounded-full bg-primary/5 flex items-center justify-center text-primary hover:bg-tertiary hover:text-white transition-all" href="https://paullyons250013.substack.com/" target="_blank" aria-label="Substack">
+                    <span class="material-symbols-outlined text-xl">mail</span>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ===================== 10. FLOATING THOUGHT BUBBLE ===================== -->
+    <div class="fixed bottom-6 right-6 z-[100]">
+        <!-- Expanded card -->
+        <div id="thought-card" class="thought-bubble-content absolute bottom-16 right-0 w-64 bg-white p-5 rounded-2xl rounded-br-none shadow-2xl border-2 border-secondary-container">
+            <span class="material-symbols-outlined text-tertiary absolute -top-3 -left-1 bg-white rounded-full p-0.5 border border-secondary-container text-lg">psychology</span>
+            <p id="thought-text" class="text-sm font-bold italic text-primary leading-tight font-headline">
+                "Ninety percent of what we worry about never even happens, which makes me worry."
+            </p>
+            <div class="mt-2 text-[10px] font-bold uppercase tracking-widest text-tertiary font-label">Wisdom Fragment #42</div>
+        </div>
+        <!-- Toggle button -->
+        <button id="thought-toggle" class="w-14 h-14 rounded-full bg-secondary-container shadow-xl flex items-center justify-center hover:scale-110 transition-transform border-2 border-white">
+            <span class="material-symbols-outlined text-tertiary text-2xl">format_quote</span>
+        </button>
+    </div>
+
+    <!-- ===================== JAVASCRIPT ===================== -->
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        // Close mobile menu on link click
+        mobileMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
+        });
+
+        // Random Enlightenment Generator
+        const quotes = [
+            "\"I used to be an overachiever, but then I realized the trophy was just plastic. Now I'm a professional under-stressor.\"",
+            "\"Ninety percent of what we worry about never even happens, which makes me worry.\"",
+            "\"If you're not happy with what you got, you won't be happy with what you get.\"",
+            "\"A quitter never wins and a winner never quits — eating donuts.\"",
+            "\"My world was dark because I kept turning out the light.\"",
+            "\"In my twenties my goal was to get rich and famous. Now my goal is to not have to use a laundromat. Here's my point: never stop dreaming!\"",
+            "\"Carpe Diem, Mañana. Seize the day. Just maybe not today.\"",
+            "\"The thing about optimism is it works until it doesn't, and then you just call it resilience and move on.\""
+        ];
+        let currentQuoteIndex = 0;
+        const wisdomQuote = document.getElementById('wisdom-quote');
+        const wisdomBtn = document.getElementById('wisdom-btn');
+
+        wisdomBtn.addEventListener('click', () => {
+            wisdomQuote.style.opacity = '0';
+            setTimeout(() => {
+                let newIndex;
+                do {
+                    newIndex = Math.floor(Math.random() * quotes.length);
+                } while (newIndex === currentQuoteIndex && quotes.length > 1);
+                currentQuoteIndex = newIndex;
+                wisdomQuote.textContent = quotes[currentQuoteIndex];
+                wisdomQuote.style.opacity = '1';
+            }, 300);
+        });
+
+        // Thought bubble toggle
+        const thoughtToggle = document.getElementById('thought-toggle');
+        const thoughtCard = document.getElementById('thought-card');
+
+        const thoughtQuotes = [
+            "\"Ninety percent of what we worry about never even happens, which makes me worry.\"",
+            "\"If you're not happy with what you got, you won't be happy with what you get.\"",
+            "\"Carpe Diem, Mañana. Seize the day. Just maybe not today.\"",
+            "\"My world was dark because I kept turning out the light.\"",
+            "\"A quitter never wins and a winner never quits — eating donuts.\""
+        ];
+        let thoughtOpen = false;
+        let thoughtIndex = 0;
+
+        thoughtToggle.addEventListener('click', () => {
+            thoughtOpen = !thoughtOpen;
+            if (thoughtOpen) {
+                thoughtIndex = (thoughtIndex + 1) % thoughtQuotes.length;
+                document.getElementById('thought-text').textContent = thoughtQuotes[thoughtIndex];
+                thoughtCard.classList.add('active');
+            } else {
+                thoughtCard.classList.remove('active');
+            }
+        });
+
+        // Smooth scroll offset for fixed nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.pageYOffset - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
