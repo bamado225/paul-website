@@ -492,7 +492,7 @@
                 <div class="text-center space-y-12 pt-4">
                     <div class="min-h-[120px] flex items-center justify-center">
                         <p id="wisdom-quote" class="text-3xl md:text-4xl font-headline font-black text-primary italic leading-tight quote-fade">
-                            "I used to be an overachiever, but then I realized the trophy was just plastic. Now I'm a professional under-stressor."
+                            "We are what we're focused on."
                         </p>
                     </div>
                     <button id="wisdom-btn" class="bg-secondary-container text-on-secondary-container px-10 py-4 rounded-full font-bold text-lg hover:scale-105 active:scale-95 transition-all shadow-lg font-headline">
@@ -562,7 +562,7 @@
         <div id="thought-card" class="thought-bubble-content absolute bottom-16 right-0 w-64 bg-white p-5 rounded-2xl rounded-br-none shadow-2xl border-2 border-secondary-container">
             <span class="material-symbols-outlined text-tertiary absolute -top-3 -left-1 bg-white rounded-full p-0.5 border border-secondary-container text-lg">psychology</span>
             <p id="thought-text" class="text-sm font-bold italic text-primary leading-tight font-headline">
-                "Ninety percent of what we worry about never even happens, which makes me worry."
+                "We are what we're focused on."
             </p>
             <div class="mt-2 text-[10px] font-bold uppercase tracking-widest text-tertiary font-label">Wisdom Fragment #42</div>
         </div>
@@ -585,30 +585,50 @@
             link.addEventListener('click', () => mobileMenu.classList.add('hidden'));
         });
 
-        // Random Enlightenment Generator
-        const quotes = [
-            "\"I used to be an overachiever, but then I realized the trophy was just plastic. Now I'm a professional under-stressor.\"",
-            "\"Ninety percent of what we worry about never even happens, which makes me worry.\"",
-            "\"If you're not happy with what you got, you won't be happy with what you get.\"",
-            "\"A quitter never wins and a winner never quits — eating donuts.\"",
-            "\"My world was dark because I kept turning out the light.\"",
-            "\"In my twenties my goal was to get rich and famous. Now my goal is to not have to use a laundromat. Here's my point: never stop dreaming!\"",
-            "\"Carpe Diem, Mañana. Seize the day. Just maybe not today.\"",
-            "\"The thing about optimism is it works until it doesn't, and then you just call it resilience and move on.\""
-        ];
-        let currentQuoteIndex = 0;
+        // Quote pool — loaded from quotes.json on page load
+        let quotePool = [];
+        let currentQuoteIndex = -1;
+        let thoughtIndex = -1;
+
         const wisdomQuote = document.getElementById('wisdom-quote');
         const wisdomBtn = document.getElementById('wisdom-btn');
+        const thoughtText = document.getElementById('thought-text');
 
+        function pickRandomIndex(excludeIndex) {
+            if (quotePool.length === 0) return -1;
+            if (quotePool.length === 1) return 0;
+            let i;
+            do {
+                i = Math.floor(Math.random() * quotePool.length);
+            } while (i === excludeIndex);
+            return i;
+        }
+
+        function formatQuote(text) {
+            return '"' + text + '"';
+        }
+
+        fetch('./quotes.json')
+            .then(r => r.json())
+            .then(data => {
+                quotePool = data;
+                currentQuoteIndex = pickRandomIndex(-1);
+                wisdomQuote.textContent = formatQuote(quotePool[currentQuoteIndex]);
+                thoughtIndex = pickRandomIndex(currentQuoteIndex);
+                thoughtText.textContent = formatQuote(quotePool[thoughtIndex]);
+            })
+            .catch(err => console.error('Failed to load quotes.json', err));
+
+        // Random Enlightenment Generator
         wisdomBtn.addEventListener('click', () => {
+            if (quotePool.length === 0) {
+                wisdomQuote.textContent = 'Loading...';
+                return;
+            }
             wisdomQuote.style.opacity = '0';
             setTimeout(() => {
-                let newIndex;
-                do {
-                    newIndex = Math.floor(Math.random() * quotes.length);
-                } while (newIndex === currentQuoteIndex && quotes.length > 1);
-                currentQuoteIndex = newIndex;
-                wisdomQuote.textContent = quotes[currentQuoteIndex];
+                currentQuoteIndex = pickRandomIndex(currentQuoteIndex);
+                wisdomQuote.textContent = formatQuote(quotePool[currentQuoteIndex]);
                 wisdomQuote.style.opacity = '1';
             }, 300);
         });
@@ -616,22 +636,17 @@
         // Thought bubble toggle
         const thoughtToggle = document.getElementById('thought-toggle');
         const thoughtCard = document.getElementById('thought-card');
-
-        const thoughtQuotes = [
-            "\"Ninety percent of what we worry about never even happens, which makes me worry.\"",
-            "\"If you're not happy with what you got, you won't be happy with what you get.\"",
-            "\"Carpe Diem, Mañana. Seize the day. Just maybe not today.\"",
-            "\"My world was dark because I kept turning out the light.\"",
-            "\"A quitter never wins and a winner never quits — eating donuts.\""
-        ];
         let thoughtOpen = false;
-        let thoughtIndex = 0;
 
         thoughtToggle.addEventListener('click', () => {
             thoughtOpen = !thoughtOpen;
             if (thoughtOpen) {
-                thoughtIndex = (thoughtIndex + 1) % thoughtQuotes.length;
-                document.getElementById('thought-text').textContent = thoughtQuotes[thoughtIndex];
+                if (quotePool.length === 0) {
+                    thoughtText.textContent = 'Loading...';
+                } else {
+                    thoughtIndex = pickRandomIndex(thoughtIndex);
+                    thoughtText.textContent = formatQuote(quotePool[thoughtIndex]);
+                }
                 thoughtCard.classList.add('active');
             } else {
                 thoughtCard.classList.remove('active');
