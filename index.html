@@ -162,6 +162,9 @@
         .thought-bubble-content.active {
             transform: scale(1);
         }
+        /* Shorts feed — hide scrollbar */
+        .no-scrollbar::-webkit-scrollbar{display:none}
+        .no-scrollbar{scrollbar-width:none}
     </style>
 </head>
 <body class="bg-background text-on-background font-body selection:bg-secondary-container selection:text-on-secondary-container overflow-x-hidden">
@@ -247,6 +250,49 @@
                     <span class="text-tertiary font-black italic font-headline text-base block mb-2 whitespace-nowrap">Paranoid Optimist</span>
                     <p class="font-bold text-primary italic leading-tight font-headline text-sm">"Ninety percent of what we worry about never even happens, which makes me worry. What's the ten percent I should really focus on?"</p>
                     <p class="text-xs mt-3 text-on-surface-variant font-medium font-label">-- Paul Lyons</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===================== 2.5 SHORTS ===================== -->
+        <section id="shorts" class="py-24 bg-surface">
+            <div class="max-w-7xl mx-auto px-6">
+                <span class="uppercase tracking-[0.2em] text-primary font-bold text-sm mb-4 block font-label">Quick Hits</span>
+                <h2 class="text-4xl md:text-5xl font-black text-primary tracking-tight font-headline wonky-underline inline-block">Paul in 60 Seconds.</h2>
+                <p class="text-lg text-on-surface-variant mt-4 font-medium">Bite-sized bits from the stage.</p>
+            </div>
+
+            <!-- Desktop: 3-up grid, click to play with sound -->
+            <div class="hidden md:grid grid-cols-3 gap-6 max-w-5xl mx-auto px-6 mt-12">
+                <div class="rounded-xl overflow-hidden shadow-lg aspect-[9/16] hover:scale-[1.02] transition-transform">
+                    <iframe src="https://www.youtube-nocookie.com/embed/l97g7BG8wDQ?rel=0" title="Paul Lyons short" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg aspect-[9/16] hover:scale-[1.02] transition-transform">
+                    <iframe src="https://www.youtube-nocookie.com/embed/hnHG0ZxEeHk?rel=0" title="Paul Lyons short" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+                <div class="rounded-xl overflow-hidden shadow-lg aspect-[9/16] hover:scale-[1.02] transition-transform">
+                    <iframe src="https://www.youtube-nocookie.com/embed/lLAbKAtgbtM?rel=0" title="Paul Lyons short" loading="lazy" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen class="w-full h-full"></iframe>
+                </div>
+            </div>
+
+            <!-- Mobile: vertical snap-scroll feed with muted autoplay -->
+            <div id="shorts-feed" class="md:hidden h-[80vh] overflow-y-auto snap-y snap-mandatory rounded-xl mx-4 relative no-scrollbar mt-12">
+                <div class="snap-start h-full w-full relative flex items-center justify-center bg-black">
+                    <div id="yt-short-1" class="w-full h-full"></div>
+                    <div id="shorts-hint" class="absolute bottom-6 left-1/2 -translate-x-1/2 bg-white/90 text-primary text-xs font-bold px-4 py-2 rounded-full font-label pointer-events-none transition-opacity duration-500">
+                        Swipe up for more &uarr;
+                    </div>
+                </div>
+                <div class="snap-start h-full w-full relative flex items-center justify-center bg-black">
+                    <div id="yt-short-2" class="w-full h-full"></div>
+                </div>
+                <div class="snap-start h-full w-full relative flex items-center justify-center bg-black">
+                    <div id="yt-short-3" class="w-full h-full"></div>
+                </div>
+                <div class="snap-start h-full w-full flex flex-col items-center justify-center gap-6 premium-gradient text-white text-center px-8">
+                    <h3 class="font-headline text-3xl font-black">There's more where that came from.</h3>
+                    <p class="opacity-90">Keep swiping on Paul's channel &mdash; new shorts all the time.</p>
+                    <a href="https://www.youtube.com/@Pawlyons/shorts" target="_blank" rel="noopener noreferrer" class="bg-white text-primary px-8 py-4 rounded-xl font-black text-lg hover:scale-105 transition-transform">Keep Watching on YouTube</a>
                 </div>
             </div>
         </section>
@@ -669,6 +715,74 @@
                 }
             });
         });
+
+        // ===================== SHORTS: mobile snap-scroll feed =====================
+        // Muted autoplay only in the mobile feed. Players are created via the
+        // YouTube IFrame API; the desktop grid uses plain iframes (no autoplay).
+        const shortsPlayers = {};
+        const shortsVideoIds = {
+            'yt-short-1': 'l97g7BG8wDQ',
+            'yt-short-2': 'hnHG0ZxEeHk',
+            'yt-short-3': 'lLAbKAtgbtM'
+        };
+
+        // Called automatically by the YouTube IFrame API once it has loaded.
+        window.onYouTubeIframeAPIReady = function () {
+            Object.keys(shortsVideoIds).forEach(id => {
+                const el = document.getElementById(id);
+                if (!el) return; // mobile-only targets; skip if not present
+                shortsPlayers[id] = new YT.Player(id, {
+                    videoId: shortsVideoIds[id],
+                    playerVars: {
+                        autoplay: 0,
+                        controls: 1,
+                        rel: 0,
+                        playsinline: 1,
+                        mute: 1,
+                        loop: 1,
+                        playlist: shortsVideoIds[id]
+                    }
+                });
+            });
+            setupShortsObserver();
+        };
+
+        // Observe only the mobile feed's video slides (never the desktop grid).
+        function setupShortsObserver() {
+            const feed = document.getElementById('shorts-feed');
+            if (!feed || typeof IntersectionObserver === 'undefined') return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    const playerEl = entry.target.querySelector('[id^="yt-short-"]');
+                    if (!playerEl) return;
+                    const player = shortsPlayers[playerEl.id];
+                    if (!player || typeof player.playVideo !== 'function') return;
+                    if (entry.isIntersecting) {
+                        try { player.mute(); player.playVideo(); } catch (e) {}
+                    } else {
+                        try { player.pauseVideo(); } catch (e) {}
+                    }
+                });
+            }, { root: feed, threshold: 0.6 });
+            // Only the slides that actually contain a player.
+            feed.querySelectorAll('.snap-start').forEach(slide => {
+                if (slide.querySelector('[id^="yt-short-"]')) observer.observe(slide);
+            });
+        }
+
+        // Fade out the "swipe up" hint after the first scroll of the feed.
+        (function () {
+            const feed = document.getElementById('shorts-feed');
+            const hint = document.getElementById('shorts-hint');
+            if (!feed || !hint) return;
+            const onFirstScroll = function () {
+                hint.classList.add('opacity-0');
+                feed.removeEventListener('scroll', onFirstScroll);
+            };
+            feed.addEventListener('scroll', onFirstScroll, { once: true });
+        })();
     </script>
+    <!-- YouTube IFrame API — powers the mobile Shorts feed's muted autoplay -->
+    <script src="https://www.youtube.com/iframe_api"></script>
 </body>
 </html>
